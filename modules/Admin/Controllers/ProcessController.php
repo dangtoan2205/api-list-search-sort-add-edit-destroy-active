@@ -62,6 +62,15 @@ class ProcessController extends Controller
         try {
             $process = $this->processService->editProcess($request, $id);
 
+            if($process){
+                $data =[
+                    'success'=> 'The thành công',
+                ];
+                return response()->json($data, 200);
+            }else{
+                return response()->json(['faild'=>'Xóa thất bại']);
+            }
+
             $result = new ProcessResource($process);
 
             return response()->success($result);

@@ -25,11 +25,18 @@ class ProcessRepository extends BaseRepository
 
     public function createProcess($request){
         try{
-            $process = [
-//                'slug' => Str::slug($request->name),
-                'title' => $request->title,
-//                'is_active' => $request->is_active ?? 0,
-            ];
+            $data = $request->only([
+                'title_vi',
+                'title_ja',
+                'title_en',
+                'status',
+            ]);
+
+            $process = new Process();
+            $process->title_vi = $data['title_vi'];
+            $process->title_ja = $data['title_ja'];
+            $process->title_en = $data['title_en'];
+            $process->status   = $data['status'];
 
             $getImage= $request->file('image');
 
@@ -40,8 +47,11 @@ class ProcessRepository extends BaseRepository
             } else {
                 $newNameImage='';
             }
+
             $process['image'] = $newNameImage;
-            return $process = $this->model->create($process);
+            $process->save();
+//            return $process = $this->model->create($process);
+            return $process;
         } catch (DDException $th) {
             LogHelper::logTrace($th);
 
@@ -99,7 +109,7 @@ class ProcessRepository extends BaseRepository
         } else {
             $process =$this->model->where('title','like', '%'.$request->search.'%')->paginate(9);
         }
-        
+
         return $process;
     }
 

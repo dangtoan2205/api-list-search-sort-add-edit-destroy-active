@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Process extends Model
 {
     protected $fillable = [
-        'title', 'image'
+        'title_vi', 'image',
+        'title_en', 'title_ja'
     ];
 }

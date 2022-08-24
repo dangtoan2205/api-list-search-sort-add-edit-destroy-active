@@ -16,9 +16,18 @@ class ProcessResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
-            'title' => $this->title,
-            'image' => $this->image
+            'title_vi' => ['required', 'min:4', 'unique:processes'],
+            'title_en' => ['required', 'min:4', 'unique:processes'],
+            'title_ja' => ['required', 'min:4', 'unique:processes'],
+            'status' => ['required', 'integer', 'unique:processes'],
+            'image' => [
+                'required',
+                'image',
+                'mimes:jpeg,png',
+                'mimetypes:image/jpeg,image/png',
+                'max:2048',
+                'unique:processes'
+            ],
         ];
     }
 }
