@@ -35,6 +35,14 @@ class ProcessController extends Controller
     {
         try {
             $process = $this->processService->createProcess($request);
+            if($process){
+                $data =[
+                    'success'=> 'Thêm thành công',
+                ];
+                return response()->json($data, 200);
+            }else{
+                return response()->json(['faild'=>'Thêm thất bại']);
+            }
 
             $result = new ProcessResource($process);
 
@@ -64,11 +72,11 @@ class ProcessController extends Controller
 
             if($process){
                 $data =[
-                    'success'=> 'The thành công',
+                    'success'=> 'Sửa thành công',
                 ];
                 return response()->json($data, 200);
             }else{
-                return response()->json(['faild'=>'Xóa thất bại']);
+                return response()->json(['faild'=>'Sửa thất bại']);
             }
 
             $result = new ProcessResource($process);

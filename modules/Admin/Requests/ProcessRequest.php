@@ -42,7 +42,7 @@ class ProcessRequest extends FormRequest
     {
         return [
             'title_vi.required'=>'Vui lòng nhập tiêu đề cho ngôn ngữ',
-            'title_en.required'=>'Vui lòng nhập tiêu đề cho ngôn ngữ',  
+            'title_en.required'=>'Vui lòng nhập tiêu đề cho ngôn ngữ',
             'title_ja.required'=>'Vui lòng nhập tiêu đề cho ngôn ngữ',
             'title_status.required'=>'Vui lòng nhập trạng thái',
             'image.required'=>'Vui lòng chọn ảnh',
@@ -50,6 +50,8 @@ class ProcessRequest extends FormRequest
             'title_vi.unique'=>'Tiêu đề cho ngôn ngữ đã tồn tại',
             'title_en.unique'=>'Tiêu đề cho ngôn ngữ đã tồn tại',
             'title_ja.unique'=>'Tiêu đề cho ngôn ngữ đã tồn tại',
+            'image.unique.mimes'=>'Ảnh phải thuộc dạng .jpeg, .png',
+            'image.unique.mimetypes'=>'Ảnh phải thuộc dạng .jpeg, .png',
         ];
     }
 }

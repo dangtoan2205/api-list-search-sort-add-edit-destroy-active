@@ -61,18 +61,20 @@ class ProcessRepository extends BaseRepository
     public function editProcess($request, $id){
         try{
             $data = $request->only([
-                'title',
-//                'title_ja',
-//                'title_en',
-//                'status',
+                'title_vi',
+                'title_ja',
+                'title_en',
+                'status',
+                'image'
             ]);
 
             $process = Process::find($id);
 
-            $process->title = $data['title'];
-//            $slider->title_ja = $data['title_ja'];
-//            $slider->title_en = $data['title_en'];
-//            $slider->status   = $data['status'];
+            $process->title_vi = $data['title_vi'];
+            $process->title_en = $data['title_en'];
+            $process->title_ja = $data['title_ja'];
+            $process->status   = $data['status'];
+//            $process->image   = $data['image'];
 
             if($request->file('image')){
                 $file= $request->file('image');
